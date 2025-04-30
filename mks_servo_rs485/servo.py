@@ -434,3 +434,12 @@ class Servo:
         angle = carry / ANGLE_TO_AXIS + value / ANGLE_TO_AXIS
 
         return angle
+    
+    def enable(self) -> None:
+        """ Active le moteur (autorise l'asservissement) """
+        self.mb.write_register(functioncode=6, registeraddress=0xF3, value=1)
+
+    def disable(self) -> None:
+        """ Désactive le moteur (libère l'axe, stoppe l'asservissement) """
+        self.mb.write_register(functioncode=6, registeraddress=0xF3, value=0)
+
